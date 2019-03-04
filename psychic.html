@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet"  href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <script type="text/javascript" src="assets/js/main.js"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
                 <source src="assets/videos/LowerBackground.mp4" type="video/mp4">
             </video>
 
-            <div class="container ">
+            <div class="container">
                 <div class="main-content">
                     <div class="row">
                         <div class="col-12">
@@ -48,105 +49,137 @@
                             <h4 id="instructions">Instructions</h4> 
                         </div>
                     </div>
-                    <div class="row button-instructions">
-                        <div class="col-6">
+                    <div class="row">
+                        <div class="col-9">
                             <p>
                                 In this game you are trying to guess a letter of the alphabet. 
-                                To guess a letter, press one of the buttons below. You have X guesses.
+                                To guess a letter, press <span id="keyboard-instructions">a 
+                                    letter on your keyboard (A through Z)</span>
+                                    <span id="button-instructions">one of the buttons below</span>. 
                             </p>
                         </div>
                     </div>
-                    <div class="btn-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5>You have <span id="guessNumber"></span> guesses.</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <button class="btn btn-primary btn-letter" onclick="changePlaystyle()" id="playstyle-btn">Play with buttons!</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 text-center" id="answer-container">
+                            <span class="large-letter" id="answer">A</span>
+                        </div>
+                    </div>
+                    <div class="row" id="congrats-message">
+                        <div class="col-3">
+                            <h3 id="win-or-lose"></h3>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-primary btn-letter" onclick="setDefaults()">Reset!</button>
+                        </div>
+                    </div>
+                    <div class="row" id="guessed-letters-title">
+                        <div class="col-12">
+                            <h4>Guessed Letters: </h4>
+                        </div>
+                    </div>
+                    <div class="row" id="guessed-letters">
+                    </div>
+                    <div id="btn-container">
                         <div class="row">
                             <div class="col-3">
-                                <button id="btn-a" class="btn btn-primary btn-letter">A</button>
+                                <button id="a" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">A</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-b" class="btn btn-primary btn-letter">B</button>
+                                <button id="b" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">B</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-c" class="btn btn-primary btn-letter">C</button>
+                                <button id="c" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">C</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-d" class="btn btn-primary btn-letter">D</button>
+                                <button id="d" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">D</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                <button id="btn-e" class="btn btn-primary btn-letter">E</button>
+                                <button id="e" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">E</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-f" class="btn btn-primary btn-letter">F</button>
+                                <button id="f" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">F</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-f" class="btn btn-primary btn-letter">G</button>
+                                <button id="g" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">G</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-h" class="btn btn-primary btn-letter">H</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <button id="btn-i" class="btn btn-primary btn-letter">I</button>
-                            </div>
-                            <div class="col-3">
-                                <button id="btn-j" class="btn btn-primary btn-letter">J</button>
-                            </div>
-                            <div class="col-3">
-                                <button id="btn-k" class="btn btn-primary btn-letter">K</button>
-                            </div>
-                            <div class="col-3">
-                                <button id="btn-l" class="btn btn-primary btn-letter">L</button>
+                                <button id="h" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">H</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                <button id="btn-m" class="btn btn-primary btn-letter">M</button>
+                                <button id="i" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">I</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-n" class="btn btn-primary btn-letter">N</button>
+                                <button id="j" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">J</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-o" class="btn btn-primary btn-letter">O</button>
+                                <button id="k" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">K</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-p" class="btn btn-primary btn-letter">P</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <button id="btn-q" class="btn btn-primary btn-letter">Q</button>
-                            </div>
-                            <div class="col-3">
-                                <button id="btn-r" class="btn btn-primary btn-letter">R</button>
-                            </div>
-                            <div class="col-3">
-                                <button id="btn-s" class="btn btn-primary btn-letter">S</button>
-                            </div>
-                            <div class="col-3">
-                                <button id="btn-t" class="btn btn-primary btn-letter">T</button>
+                                <button id="l" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">L</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                <button id="btn-u" class="btn btn-primary btn-letter">U</button>
+                                <button id="m" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">M</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-v" class="btn btn-primary btn-letter">V</button>
+                                <button id="n" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">N</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-w" class="btn btn-primary btn-letter">W</button>
+                                <button id="o" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">O</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-x" class="btn btn-primary btn-letter">X</button>
+                                <button id="p" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">P</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <button id="q" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">Q</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="r" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">R</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="s" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">S</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="t" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">T</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <button id="u" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">U</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="v" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">V</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="w" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">W</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="x" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">X</button>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-3">
-                                <button id="btn-y" class="btn btn-primary btn-letter">Y</button>
+                                <button id="y" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">Y</button>
                             </div>
                             <div class="col-3">
-                                <button id="btn-z" class="btn btn-primary btn-letter">Z</button>
+                                <button id="z" class="btn btn-primary btn-letter" onclick="letterGuess(this.id)">Z</button>
                             </div>
                         </div>
                     </div>
@@ -159,6 +192,6 @@
                 Copyright©
             </div>
         </footer>
-    </wrapper>    
+    </wrapper> 
 </body>
 </html>

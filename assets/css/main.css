@@ -52,12 +52,25 @@ a.nav-link, #name {
     padding: 25px 0;
 }
 
+.large-letter {
+    font-size: 72px;
+}
+
+.btn-container {
+    display: none;
+}
+
 .btn-letter {
     width: 100%;
     margin-bottom: 15px;
     background-color: #ff00ff;
     color: black;
     border: none;
+}
+
+.btn-disabled {
+    background-color: #777777;
+    color: #00ffff;
 }
 
 #name {
@@ -69,6 +82,7 @@ a.nav-link, #name {
 #background-video-container {
     overflow: hidden;
     position: relative;
+    /* 83vh needed to be added to provide a relative good stretch on the video */
     min-height: 83vh;
 }
 
@@ -80,7 +94,6 @@ a.nav-link, #name {
     width: 100%;
     object-fit: fill;
     z-index: -1;
-    /* transform: translateY(-50%) translateX(-50%); */
 }
 
 #page-title {
@@ -88,4 +101,31 @@ a.nav-link, #name {
     border-width: 0 0 1px 0;
     border-color: #ff00ff;
     padding-bottom: 20px;
+}
+
+#keyboard-instructions {
+    display: inline;
+}
+
+#button-instructions {
+    display: none;
+}
+
+#guessNumber {
+    display: inline;
+}
+
+#answer-container {
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    border-color: #00ffff;
+    margin: 0 15px 30px;
+}
+
+#answer {
+    visibility: hidden;
+}
+
+#congrats-message {
+    display: none;
 }
