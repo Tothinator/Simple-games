@@ -1,6 +1,6 @@
 html {
     position: relative;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 body {
@@ -11,6 +11,10 @@ body {
 
 body, wrapper {
     min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #00ffff;
 }
 
 footer { 
@@ -48,8 +52,40 @@ a.nav-link, #name {
     padding: 25px 0;
 }
 
+.btn-letter {
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #ff00ff;
+    color: black;
+    border: none;
+}
+
 #name {
     padding: 15px 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+#background-video-container {
+    overflow: hidden;
+    position: relative;
+    min-height: 83vh;
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    z-index: -1;
+    /* transform: translateY(-50%) translateX(-50%); */
+}
+
+#page-title {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #ff00ff;
+    padding-bottom: 20px;
 }
