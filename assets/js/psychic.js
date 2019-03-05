@@ -57,15 +57,21 @@ function getRandomLetter() {
 }
 
 function setRandomLetter() {
+    answerSpan = document.getElementById("answer");
+    if (answerSpan.firstChild) {
+        answerSpan.removeChild(answerSpan.firstChild);
+    }
+    answer = letters.charAt(Math.floor(Math.random() * letters.length));
     var node = document.createElement("img");
-    node.src = "assets/gifs/A.gif";
-    document.getElementById("answer").appendChild(node);
-    return letters.charAt(Math.floor(Math.random() * letters.length));
+    answerSpan.appendChild(node);
+    return answer;
 }
 
 function letterGuess(letter) {
     if (letter === answer && guesses !== 0) {
-        document.getElementById("answer").style.visibility = "visible";
+        // ended up changing this process to mimic the wordguess js to load the gif in at the time of guessing
+        // instead of revealing it with visibility style changes.
+        document.getElementById("answer").firstChild.src = "assets/gifs/" + answer.toLocaleUpperCase() + ".gif";
         document.getElementById("win-or-lose").textContent = "Nice!"
         document.getElementById("congrats-message").style.display = "block";
     } else if (guesses !== 0) {

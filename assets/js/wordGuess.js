@@ -102,31 +102,37 @@ function setUpSongDisplay(song) {
         var letter = song.charAt(i);
         var newDiv = document.createElement("div");
         var newSpan = document.createElement("span");
+        var newImg = document.createElement("img");
         newDiv.classList.add("text-center");
-        newSpan.appendChild(document.createTextNode(letter));
         newSpan.classList.add("large-letter");
         // If there is a space in the song name then we will put a space in the answer container
         if (letter !== ' ') {
             newDiv.classList.add("answer-container");
             newDiv.classList.add("col-1");
             newSpan.classList.add("answer-" + letter);
-            newSpan.style.visibility = "hidden";
+            // newImg.src = "assets/gifs/" + letter + ".gif";
+            // newSpan.style.visibility = "hidden";
         } else {
             newDiv.classList.add("col-1");
             // this is a little dangerous scope wise but it works
             answer = answer.replace(" ", "");
         }
+        newSpan.appendChild(newImg);
         newDiv.appendChild(newSpan);
         document.getElementById("song-container").appendChild(newDiv);
     }
 }
 
+// When I added the gifs I had to load them in when users input a guess rather 
+// than when making the div because I had an issue of them caching and not playing
+// the animation of the gif.
 function revealLetter(letter) {
     var reg = new RegExp(letter, "g");
     answer = answer.replace(reg, "");
     var revealedLetters = document.getElementsByClassName("answer-" + letter);
     for (var i = 0; i < revealedLetters.length; i++){
-        revealedLetters[i].style.visibility = "visible";
+        // revealedLetters[i].style.visibility = "visible";
+        revealedLetters[i].firstChild.src = "assets/gifs/" + letter + ".gif";
     }
     guessedLetters.push(letter);
     document.getElementById(letter).classList.add("btn-disabled");
