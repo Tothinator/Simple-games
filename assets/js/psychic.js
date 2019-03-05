@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function setDefaults() {
     guesses = 10;
-    answer = getRandomLetter();
+    answer = setRandomLetter();
     console.log("This is the answer! " + answer);
-    document.getElementById("answer").textContent = answer.toUpperCase();
+    // document.getElementById("answer").textContent = answer.toUpperCase();
     document.getElementById("guessNumber").textContent = guesses;
-    document.getElementById("answer").style.visibility = "hidden";
+    // document.getElementById("answer").style.visibility = "hidden";
     document.getElementById("congrats-message").style.display = "none";
     var guessDivs = document.getElementById("guessed-letters");
     while (guessDivs.firstChild){
@@ -53,6 +53,13 @@ function changePlaystyle() {
 }
 
 function getRandomLetter() {
+    return letters.charAt(Math.floor(Math.random() * letters.length));
+}
+
+function setRandomLetter() {
+    var node = document.createElement("img");
+    node.src = "assets/gifs/A.gif";
+    document.getElementById("answer").appendChild(node);
     return letters.charAt(Math.floor(Math.random() * letters.length));
 }
 
