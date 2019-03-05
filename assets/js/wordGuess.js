@@ -1,4 +1,7 @@
 var playstyle = 0; // 0 is default keyboard playstyle, 1 is button playstyle
+// hack solution to the problem of user's 
+//still being able to guess even after solving the puzzle.
+var isSolved = false;
 var guessedLetters = [];
 var guesses = 10;
 var answer = "";
@@ -17,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function setDefaults() {
     guesses = 10;
+    isSolved = false;
     answer = getRandomWord().toUpperCase();
     console.log("This is the answer! " + answer);
     document.getElementById("guessNumber").textContent = guesses;
@@ -67,13 +71,14 @@ function getRandomWord() {
 
 function songGuess(letter) {
     letter = letter.toUpperCase();
-    if (answer.includes(letter) && guesses !== 0) {
+    if (answer.includes(letter) && guesses !== 0 && !isSolved) {
         revealLetter(letter);
         if (answer === "") {
             document.getElementById("win-or-lose").textContent = "Nice!"
             document.getElementById("congrats-message").style.display = "block";
+            isSolved = true;
         }
-    } else if (guesses !== 0) {
+    } else if (guesses !== 0 && !isSolved) {
         addGuess(letter);
         document.getElementById("guessNumber").textContent = guesses;
     }
@@ -114,6 +119,7 @@ function setUpSongDisplay(song) {
             // newSpan.style.visibility = "hidden";
         } else {
             newDiv.classList.add("col-1");
+            newDiv.classList.add("space");
             // this is a little dangerous scope wise but it works
             answer = answer.replace(" ", "");
         }

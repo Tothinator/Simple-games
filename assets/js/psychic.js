@@ -1,4 +1,7 @@
 var playstyle = 0; // 0 is default keyboard playstyle, 1 is button playstyle
+// hack solution to the problem of user's 
+//still being able to guess even after solving the puzzle.
+var isSolved = false; 
 var guessedLetters = [];
 var guesses = 10;
 var answer = "";
@@ -15,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function setDefaults() {
     guesses = 10;
+    isSolved = false;
     answer = setRandomLetter();
     console.log("This is the answer! " + answer);
     // document.getElementById("answer").textContent = answer.toUpperCase();
@@ -68,13 +72,14 @@ function setRandomLetter() {
 }
 
 function letterGuess(letter) {
-    if (letter === answer && guesses !== 0) {
+    if (letter === answer && guesses !== 0 && !isSolved) {
         // ended up changing this process to mimic the wordguess js to load the gif in at the time of guessing
         // instead of revealing it with visibility style changes.
         document.getElementById("answer").firstChild.src = "assets/gifs/" + answer.toLocaleUpperCase() + ".gif";
         document.getElementById("win-or-lose").textContent = "Nice!"
         document.getElementById("congrats-message").style.display = "block";
-    } else if (guesses !== 0) {
+        isSolved = true;
+    } else if (guesses !== 0 && !isSolved) {
         addGuess(letter);
         document.getElementById("guessNumber").textContent = guesses;
     }
@@ -100,6 +105,6 @@ function addGuess(letter) {
 
 document.onkeyup = function(event) {
     if (playstyle === 0) {
-        letterGuess(event.key);
+        letterGuess(event.key.toLowerCase());
     }
 }
